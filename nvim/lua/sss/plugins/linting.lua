@@ -14,6 +14,17 @@ return {
 			php = { "phpcs" },
 		}
 
+		-- Customize built-in linters
+		-- phpcs docs: https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Usage
+		local phpcs = require("lint").linters.phpcs
+		phpcs.args = {
+			"-q",
+			"--severity=6",
+			-- <- Add a new parameter here
+			"--report=json",
+			"-",
+		}
+		--
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -23,7 +34,7 @@ return {
 			end,
 		})
 
-		vim.keymap.set("n", "<leader>l", function()
+		vim.keymap.set("n", "<leader>ll", function()
 			lint.try_lint()
 		end, { desc = "Trigger linting for current file" })
 	end,
