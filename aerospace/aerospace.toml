@@ -67,7 +67,7 @@ PATH = '/usr/local/bin/:${PATH}'
     inner.vertical =   10
     outer.left =       10
     outer.bottom =     10
-    outer.top =        [{monitor.main = 48}, {monitor.built-in = 18}, 24]
+    outer.top =        [{monitor.'^built-in retina display$' = 18}, {monitor.main = 48}, 24]
     outer.right =      10
 
 # 'main' binding mode declaration
